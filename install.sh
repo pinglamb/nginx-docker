@@ -7,6 +7,6 @@ run /nd_build/prepare.sh
 run /nd_build/utilities.sh
 
 run /nd_build/nginx.sh
-run /nd_build/ruby-2.3.sh
+run /nd_build/ruby-2.4.sh
 
 run /nd_build/finalize.sh
