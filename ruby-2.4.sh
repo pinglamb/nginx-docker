@@ -18,8 +18,8 @@ run mkdir -p /usr/local/etc \
 	} >> /usr/local/etc/gemrc
 
 run true && curl -L https://github.com/postmodern/ruby-install/archive/v$RUBY_INSTALL_VERSION.tar.gz | tar xzv
-run cd ruby-install-$RUBY_INSTALL_VERSION && make install
-run cd .. && rm -r ruby-install-$RUBY_INSTALL_VERSION
+run true && (cd ruby-install-$RUBY_INSTALL_VERSION && make install)
+run rm -r ruby-install-$RUBY_INSTALL_VERSION
 
 run ruby-install --system ruby $RUBY_VERSION -- --disable-install-doc
 run gem update --system $RUBY_GEM_VERSION
