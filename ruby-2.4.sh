@@ -17,8 +17,8 @@ run mkdir -p /usr/local/etc \
 		echo 'update: --no-document'; \
 	} >> /usr/local/etc/gemrc
 
-run true && curl -L https://github.com/postmodern/ruby-install/archive/v$RUBY_INSTALL_VERSION.tar.gz | tar xzv
-run true && (cd ruby-install-$RUBY_INSTALL_VERSION && make install)
+run curl -L https://github.com/postmodern/ruby-install/archive/v$RUBY_INSTALL_VERSION.tar.gz | tar xzv
+run make -C ruby-install-$RUBY_INSTALL_VERSION install
 run rm -r ruby-install-$RUBY_INSTALL_VERSION
 
 run ruby-install --system ruby $RUBY_VERSION -- --disable-install-doc

@@ -35,6 +35,6 @@ function header()
 
 function run()
 {
-	echo "+ $@"
+	echo "+ $@" >&2
 	"$@"
 }
