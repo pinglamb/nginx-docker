@@ -2,6 +2,12 @@
 set -e
 source /nd_build/buildconfig
 
+RUBY_VERSION=2.4.2
+RUBY_GEM_VERSION=2.6.13
+RUBY_INSTALL_VERSION=0.6.1
+BUNDLER_VERSION=1.15.4
+TZINFO_VERSION=1.2017.2
+
 header "Installing Ruby..."
 
 # skip installing gem documentation
@@ -11,15 +17,11 @@ run mkdir -p /usr/local/etc \
 		echo 'update: --no-document'; \
 	} >> /usr/local/etc/gemrc
 
-run curl -L -o ruby-install-0.6.1.tar.gz https://github.com/postmodern/ruby-install/archive/v0.6.1.tar.gz
-run tar -xzvf ruby-install-0.6.1.tar.gz
-run rm ruby-install-0.6.1.tar.gz
-run cd ruby-install-0.6.1
-run make install
-run cd .. && rm -r ruby-install-0.6.1
+run curl -L https://github.com/postmodern/ruby-install/archive/v$RUBY_INSTALL_VERSION.tar.gz | tar xzv
+run make -C ruby-install-$RUBY_INSTALL_VERSION install
+run rm -r ruby-install-$RUBY_INSTALL_VERSION
 
-run ruby-install --system ruby 2.4.1 -- --disable-install-doc
-run gem update --system 2.6.12
-run gem install bundler -v 1.15.1
-
-run gem install tzinfo-data -v 1.2017.2
+run ruby-install --system ruby $RUBY_VERSION -- --disable-install-doc
+run gem update --system $RUBY_GEM_VERSION
+run gem install bundler -v $BUNDLER_VERSION
+run gem install tzinfo-data -v $TZINFO_VERSION
