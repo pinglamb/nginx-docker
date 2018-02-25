@@ -1,4 +1,4 @@
-FROM phusion/baseimage:0.9.28
+FROM phusion/baseimage:0.10.0
 MAINTAINER pinglamb <or@pinglamb.com>
 
 ADD . /nd_build
